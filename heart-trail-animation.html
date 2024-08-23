@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Trail Animation</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: black;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    span {
+      background: url("https://cdn3.iconfinder.com/data/icons/object-emoji/50/Heart-1024.png") no-repeat center center;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background-size: cover;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      animation: animate 3s linear forwards;
+    }
+
+    @keyframes animate {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -500%) scale(0.2);
+        opacity: 0;
+        filter: hue-rotate(720deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const bodyElement = document.querySelector("body");
+
+    bodyElement.addEventListener("mousemove", (event) => {
+      const xPosition = event.clientX;
+      const yPosition = event.clientY;
+      const spanElement = document.createElement("span");
+      spanElement.style.left = xPosition + "px";
+      spanElement.style.top = yPosition + "px";
+      const size = Math.random() * 40 + 60; 
+      spanElement.style.width = size + "px";
+      spanElement.style.height = size + "px";
+      bodyElement.appendChild(spanElement);
+
+      setTimeout(() => {
+        spanElement.remove();
+      }, 3000); 
+    });
+  </script>
+</body>
+</html>
